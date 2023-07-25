@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="TecDoc.css" />
+    </head>
+    <body>
+        <nav id="navbar">
+            <header>
+                A Short Guide on:
+                <br />
+                Using JavaScript in Viedoc
+            </header>
+            <a class="nav-link" href="#introduction">Introduction</a>
+            <a class="nav-link" href="#operators">Operators</a>
+            <a class="nav-link" href="#pass_by_value">Pass by value</a>
+            <a class="nav-link" href="#pass_by_reference">Pass by reference</a>
+            <a class="nav-link" href="#expressions">Expressions</a>
+            <div id="collapsed_text">Menu</div>
+        </nav>
+        <main id="main-doc">
+            <section class="main-section" id="introduction">
+                <header>Introduction</header>
+                <p>
+                    In Viedoc Designer, JavaScript can be used to provide a lot
+                    more flexibility when working with the study design, by:
+                </p>
+                <ul>
+                    <li>
+                        setting Visibility conditions (for items, item groups,
+                        activities and events).
+                    </li>
+                    <li>
+                        writing data checks under the Validation tab for items.
+                    </li>
+                    <li>using functions/default values for items.</li>
+                    <li>writing conditions for Alerts.</li>
+                </ul>
+                <p>
+                    <span class="highlighted">Important!</span>
+                    The syntax used is the JavaScript syntax, as described in
+                    ECMAScript 5.1 standards. This is why it is important to
+                    verify the functionality against the ECMAScript 5.1
+                    specification and out of range values.
+                </p>
+                <p>
+                    <span class="highlighted">Note!</span>
+                    If an incorrectly formatted JavaScript code is put in the
+                    study design, the outcome of the executed JavaScript code in
+                    Viedoc Clinic will be handled as a "false result" for
+                    Visibility conditions, Data checks and Alerts. If used in a
+                    Function for an item, the item will not be populated, and a
+                    note will show up in the Form Audit record mentioning an
+                    issue in the study design.
+                </p>
+                <p>
+                    <span class="highlighted">Note!</span>
+                    If the full reference path for an item in an alert body, for
+                    example, COMMON_AE.AESPID is used, and the event is
+                    specified in the reference, and the event can recur, such as
+                    for Common and Unscheduled events, the value that is
+                    returned is from the latest form instance based on event
+                    date.
+                </p>
+                <code></code>
+            </section>
+            <section class="main-section" id="operators">
+                <header>Operators</header>
+                <p>The below JavaScript operators are used:</p>
+                <ul>
+                    <li>
+                        Arithmetic Operators:
+                        <ul>
+                            <li>+ (addition)</li>
+                            <li>- (subtraction)</li>
+                            <li>* (multiplication)</li>
+                            <li>/ (division)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Comparison:
+                        <ul>
+                            <li>== (equal to)</li>
+                            <li>!= (not equal to)</li>
+                            <li>&lt; (less than)</li>
+                            <li>&gt; (greater than)</li>
+                            <li>&lt;= (less than or equal)</li>
+                            <li>&gt;= (greater than or equal)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Boolean logic:
+                        <ul>
+                            <li>&amp;&amp; (AND)</li>
+                            <li>|| (OR)</li>
+                            <li>! (NOT)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <section class="main-section" id="pass_by_value">
+                <header>Pass by value</header>
+                <p>
+                    In JavaScript data is passed in two ways: by value and by
+                    reference, respectively.
+                </p>
+                <p>
+                    The following JavaScript data types are the ones that are
+                    "passed by value":
+                </p>
+                <ul>
+                    <li>boolean</li>
+                    <li>null</li>
+                    <li>undefined</li>
+                    <li>string</li>
+                    <li>number</li>
+                </ul>
+                <p>
+                    This means that, when comparing two variables of the above
+                    mentioned types, their values will be compared. It means
+                    that, for example if we have the following code:
+                </p>
+                <code>var a = 3;</code>
+                <br />
+                <code>var b = 'def';</code>
+                <br />
+                <code>var x = a;</code>
+                <br />
+                <code>var y = b;</code>
+                <p>
+                    ...then a will get the value 3, b will get the value 'def',
+                    x will get the value 3, y will get the value 'def'.
+                    Variables a and x have the same value (3), and b and y have
+                    the same value ('def'). Still, all the four variables are
+                    independent. If we continue now and change the value of a to
+                    5, this will have no impact on var x, which still has the
+                    value of 3.
+                </p>
+            </section>
+            <section class="main-section" id="pass_by_reference">
+                <header>Pass by reference</header>
+                <p>
+                    The following JavaScript data types are "passed by
+                    reference":
+                </p>
+                <ul>
+                    <li>array</li>
+                    <li>function</li>
+                    <li>object</li>
+                </ul>
+                <p>
+                    This means that variables of these types get a reference to
+                    a certain value, not the value itself.
+                </p>
+                <p>
+                    The date is always an object in JavaScript. If we have for
+                    example, the following:
+                </p>
+                <code>var d = new Date();</code>
+                <br />
+                <code>var c = d;</code>
+                <br />
+                <code>d.setDate(10);</code>
+                <p>
+                    ...then variable d is created as a date object, variable c
+                    is assigned to reference to the same value as d, and then
+                    each and every time we change d, c will dynamically change
+                    as well, as it references the same value as d does. So, when
+                    we set d to the 10th of the current month, c will
+                    automatically get the same value.
+                </p>
+            </section>
+            <section class="main-section" id="expressions">
+                <header>Expressions</header>
+                <p>
+                    An expression in Viedoc is a JavaScript function body
+                    written in ECMAScript 5.1 standards.
+                </p>
+                <p>For example:</p>
+                <code>return 2;</code>
+                <br />
+                <code>var a = 2;</code>
+                <br />
+                <code>var b = 3;</code>
+                <br />
+                <code>return a + b;</code>
+                <p>
+                    Expressions can be written as single statement. Viedoc
+                    converts them into a function body.
+                </p>
+                <p>
+                    <span class="italic">expression</span>
+                    is converted to
+                    <span class="italic">return (expression)</span>
+                    , for example:
+                </p>
+                <code>2</code>
+                <p>converts to</p>
+                <code>return (2);</code>
+                <p>or</p>
+                <code>VSDT &lt;= now()</code>
+                <p>converts to</p>
+                <code>return ( VSDT &lt;= now());</code>
+            </section>
+        </main>
+    </body>
+</html>
